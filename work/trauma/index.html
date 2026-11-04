@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Trauma, from REMAINS. An abstract digital work by Mohi.">
+<meta property="og:title" content="Trauma · Mohi">
+<meta property="og:description" content="Trauma, from REMAINS. An abstract digital work by Mohi.">
+<meta property="og:url" content="https://bymohi.com/work/trauma/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mohi">
+<meta property="og:image" content="https://bymohi.com/og/trauma.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Trauma by Mohi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@ByMohi_">
+<link rel="canonical" href="https://bymohi.com/work/trauma/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#2c2b28">
+<style>html{color-scheme:dark}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Trauma · Mohi</title>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Mohi", "url": "https://bymohi.com/", "description": "Abstract digital artist working with stillness, decay and drift.", "sameAs": ["https://x.com/ByMohi_", "https://www.instagram.com/bymohi___", "https://linktr.ee/bymohi"]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Spectral:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+/* Layout: one dark printed sheet — fibre cube as the hero, works hung below in passe-partout */
+:root{
+  --ink:#2c2b28;        /* sampled from the dark ground of the works */
+  --ink-2:#34322d;
+  --sand:#c9b994;       /* the line colour */
+  --paper:#ddcaa5;      /* the mat around the prints */
+  --dim:#8f846b;
+  --f-display:"Tenor Sans","Optima","Candara",sans-serif;
+  --f-body:"Spectral",Georgia,serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+html,body{background:var(--ink);color:var(--sand)}
+body{font-family:var(--f-body);font-weight:300;font-size:17px;line-height:1.6;
+  background-image:var(--grain,none);background-size:420px 420px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1180px;margin:0 auto;min-height:calc(100svh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));display:flex;flex-direction:column}
+#home{flex:1;display:flex;flex-direction:column;min-height:0}
+header{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-block:28px 0;flex-wrap:wrap}
+.name{font-family:var(--f-display);font-size:15px;letter-spacing:.42em;text-transform:uppercase;color:var(--sand);text-decoration:none}
+nav{display:flex;gap:28px}
+nav a{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-decoration:none}
+nav a:hover,nav a:focus-visible{color:var(--sand)}
+a:focus-visible,canvas:focus-visible{outline:1px dashed var(--sand);outline-offset:4px}
+
+.hero{position:relative;flex:1;min-height:360px}
+/* holding or dragging on the scene never selects or highlights it */
+.hero{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+#cube:focus:not(:focus-visible){outline:none}
+#cube{position:absolute;left:0;top:12px;width:100%;height:calc(100% - 12px);display:block;cursor:crosshair;touch-action:pan-y}
+.viewer{position:absolute;z-index:5;pointer-events:none;cursor:zoom-out}
+.viewer.open{pointer-events:auto}
+.viewer figure{margin:0;width:100%;height:100%;display:block;opacity:0}
+.viewer img{width:100%;height:100%;object-fit:cover;box-shadow:none}
+.viewer figure:hover img{transform:none}
+.viewer figcaption{position:absolute;left:0;right:0;top:calc(100% + 12px)}
+.about-panel{position:absolute;z-index:5;color:var(--paper);pointer-events:none}
+.about-panel.open{pointer-events:auto;cursor:pointer}
+.about-inner{position:absolute;left:50%;top:50%;transform:translate(-50%,calc(-50% + 8px));display:grid;gap:18px;opacity:0;text-shadow:0 0 18px var(--ink),0 0 3px var(--ink)}
+.about-inner p{margin:0;font-size:clamp(18px,2.1vw,22px);line-height:1.55;max-width:none}
+.about-inner .coda{font-family:var(--f-display);font-size:clamp(20px,2.6vw,28px);letter-spacing:.04em;padding-top:6px}
+.hint{position:absolute;right:0;bottom:6px;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);pointer-events:none}
+
+section{padding-block:56px}
+.label{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 28px;display:flex;gap:16px;align-items:center}
+.label::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--dim),transparent);opacity:.5}
+.works{columns:3 240px;column-gap:32px}
+.works figure{break-inside:avoid;margin-bottom:40px}
+figure{margin:0;display:grid;gap:12px}
+figure img{width:100%;height:auto;display:block;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+figure:hover img{transform:translateY(-4px)}
+figcaption{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--dim);display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px}
+figcaption .t{color:var(--sand)}
+figcaption a{color:var(--dim);text-decoration:none}figcaption a:hover,figcaption a:focus-visible{color:var(--sand)}
+.back{color:var(--sand);text-decoration:none}.back:hover{text-decoration:underline}
+#worksView{animation:rise .9s cubic-bezier(.2,.7,.2,1)}@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+.about p:not(.label){max-width:60ch;font-size:clamp(20px,2.4vw,28px);line-height:1.45;margin:0;text-wrap:balance}
+.about em{color:var(--paper)}
+footer{padding-block:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+.who{display:flex;align-items:center;gap:16px}
+.social{display:flex;gap:18px}
+.social a{display:grid;place-items:center;width:36px;height:36px;margin:-8px;color:var(--dim);transition:color .3s}
+.social a:hover,.social a:focus-visible{color:var(--sand)}
+.social svg{width:20px;height:20px}
+@media (max-width:720px){
+  .works{columns:2 150px;column-gap:16px}
+  .works figure{margin-bottom:28px}
+  nav{gap:18px}
+  .hint{font-size:8.5px;letter-spacing:.08em;opacity:.8}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="name" href="/" id="homeLink">Mohi</a>
+    <nav><a href="/works/" id="worksLink">Works</a><a href="/about/" id="aboutLink">About</a></nav>
+  </header>
+
+  <main id="home">
+  <div class="hero">
+    <canvas id="cube" tabindex="0" aria-label="A cube woven from fibre, with a scribbled circle drifting inside. Move the pointer over it to pull the threads apart."></canvas>
+    <div class="hint" id="hint">open the threads · tap the circle</div>
+    <div class="about-panel" id="aboutPanel" hidden role="dialog" aria-label="About Mohi">
+      <div class="about-inner">
+        <p>I make abstract digital works about stillness, decay and drift.</p>
+        <p>With restrained palettes and precise linework, I try to give form to emotions that resist clear definition. I'm drawn to what remains after things begin to fall apart.</p>
+        <p class="coda">Abstract as an emotion.</p>
+      </div>
+    </div>
+    <div class="viewer" id="viewer" hidden role="dialog" aria-label="Work">
+      <figure><img alt=""><figcaption><span class="t"></span><a href="#" target="_blank" rel="noopener" id="vLink"></a></figcaption></figure>
+    </div>
+  </div>
+
+  </main>
+
+  <main id="worksView" hidden>
+  <section>
+    <p class="label"><a class="back" href="/" id="backLink">← back</a> Works</p>
+    <div class="works">
+      <figure data-title="Stillfall" data-coll="Transient" data-url="https://www.transient.xyz/mint/stillfall" data-where="Transient"><img src="works/stillfall.webp" srcset="works/sm/stillfall.webp 600w, works/stillfall.webp 1200w" sizes="(max-width:720px) 46vw, 340px" width="1200" height="1200" loading="lazy" decoding="async" alt="Stillfall, by Mohi"><figcaption><span class="t">Stillfall</span><a href="https://www.transient.xyz/mint/stillfall" target="_blank" rel="noopener">Transient ↗</a></figcaption></figure>
+      <figure data-title="Craniectomy" data-coll="Transient" data-url="https://www.transient.xyz/nfts/ethereum/0x6f2e2fcaf70258b5e62ccbe967431c6d3794a2d6/1" data-where="Transient"><img src="works/craniectomy.webp" srcset="works/sm/craniectomy.webp 600w, works/craniectomy.webp 1200w" sizes="(max-width:720px) 46vw, 340px" width="1200" height="1200" loading="lazy" decoding="async" alt="Craniectomy, by Mohi"><figcaption><span class="t">Craniectomy</span><a href="https://www.transient.xyz/nfts/ethereum/0x6f2e2fcaf70258b5e62ccbe967431c6d3794a2d6/1" target="_blank" rel="noopener">Transient ↗</a></figcaption></figure>
+      <figure data-title="Liminal" data-coll="Transient" data-url="https://www.transient.xyz/nfts/ethereum/0x35c459e2476778a359dd40eeefae0071dbcb4042/1" data-where="Transient"><img src="works/liminal.webp" srcset="works/sm/liminal.webp 600w, works/liminal.webp 1200w" sizes="(max-width:720px) 46vw, 340px" width="1200" height="1200" loading="lazy" decoding="async" alt="Liminal, by Mohi"><figcaption><span class="t">Liminal</span><a href="https://www.transient.xyz/nfts/ethereum/0x35c459e2476778a359dd40eeefae0071dbcb4042/1" target="_blank" rel="noopener">Transient ↗</a></figcaption></figure>
+      <figure data-title="Trauma" data-coll="REMAINS" data-url="https://objkt.com/tokens/KT1UEVAkGRbMJeQaqaerhM6zzohYyKgCNCdH/0" data-where="objkt"><img src="works/trauma.webp" srcset="works/sm/trauma.webp 600w, works/trauma.webp 1024w" sizes="(max-width:720px) 46vw, 340px" width="1024" height="1024" loading="lazy" decoding="async" alt="Trauma, by Mohi"><figcaption><span class="t">Trauma</span><a href="https://objkt.com/tokens/KT1UEVAkGRbMJeQaqaerhM6zzohYyKgCNCdH/0" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Decay" data-coll="REMAINS" data-url="https://objkt.com/tokens/KT1UEVAkGRbMJeQaqaerhM6zzohYyKgCNCdH/1" data-where="objkt"><img src="works/decay.webp" srcset="works/sm/decay.webp 600w, works/decay.webp 1024w" sizes="(max-width:720px) 46vw, 340px" width="1024" height="778" loading="lazy" decoding="async" alt="Decay, by Mohi"><figcaption><span class="t">Decay</span><a href="https://objkt.com/tokens/KT1UEVAkGRbMJeQaqaerhM6zzohYyKgCNCdH/1" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Rift" data-coll="REMAINS" data-url="https://objkt.com/tokens/KT1UEVAkGRbMJeQaqaerhM6zzohYyKgCNCdH/2" data-where="objkt"><img src="works/rift.webp" srcset="works/sm/rift.webp 600w, works/rift.webp 1024w" sizes="(max-width:720px) 46vw, 340px" width="1024" height="1024" loading="lazy" decoding="async" alt="Rift, by Mohi"><figcaption><span class="t">Rift</span><a href="https://objkt.com/tokens/KT1UEVAkGRbMJeQaqaerhM6zzohYyKgCNCdH/2" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Threshold" data-coll="REMAINS" data-url="https://objkt.com/tokens/KT1UEVAkGRbMJeQaqaerhM6zzohYyKgCNCdH/3" data-where="objkt"><img src="works/threshold.webp" srcset="works/sm/threshold.webp 600w, works/threshold.webp 778w" sizes="(max-width:720px) 46vw, 340px" width="778" height="1024" loading="lazy" decoding="async" alt="Threshold, by Mohi"><figcaption><span class="t">Threshold</span><a href="https://objkt.com/tokens/KT1UEVAkGRbMJeQaqaerhM6zzohYyKgCNCdH/3" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Vestige" data-coll="REMAINS" data-url="https://objkt.com/tokens/KT1UEVAkGRbMJeQaqaerhM6zzohYyKgCNCdH/4" data-where="objkt"><img src="works/vestige.webp" srcset="works/sm/vestige.webp 600w, works/vestige.webp 778w" sizes="(max-width:720px) 46vw, 340px" width="778" height="1024" loading="lazy" decoding="async" alt="Vestige, by Mohi"><figcaption><span class="t">Vestige</span><a href="https://objkt.com/tokens/KT1UEVAkGRbMJeQaqaerhM6zzohYyKgCNCdH/4" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Drift" data-coll="REMAINS" data-url="https://objkt.com/tokens/KT1UEVAkGRbMJeQaqaerhM6zzohYyKgCNCdH/5" data-where="objkt"><img src="works/drift.webp" srcset="works/sm/drift.webp 600w, works/drift.webp 778w" sizes="(max-width:720px) 46vw, 340px" width="778" height="1024" loading="lazy" decoding="async" alt="Drift, by Mohi"><figcaption><span class="t">Drift</span><a href="https://objkt.com/tokens/KT1UEVAkGRbMJeQaqaerhM6zzohYyKgCNCdH/5" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Lapse" data-coll="Pulse" data-url="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/0" data-where="objkt"><img src="works/lapse.webp" srcset="works/sm/lapse.webp 600w, works/lapse.webp 1024w" sizes="(max-width:720px) 46vw, 340px" width="1024" height="1024" loading="lazy" decoding="async" alt="Lapse, by Mohi"><figcaption><span class="t">Lapse</span><a href="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/0" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Swarm" data-coll="Pulse" data-url="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/1" data-where="objkt"><img src="works/swarm.webp" srcset="works/sm/swarm.webp 600w, works/swarm.webp 1024w" sizes="(max-width:720px) 46vw, 340px" width="1024" height="1024" loading="lazy" decoding="async" alt="Swarm, by Mohi"><figcaption><span class="t">Swarm</span><a href="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/1" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Illuvortex" data-coll="Pulse" data-url="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/2" data-where="objkt"><img src="works/illuvortex.webp" srcset="works/sm/illuvortex.webp 600w, works/illuvortex.webp 1024w" sizes="(max-width:720px) 46vw, 340px" width="1024" height="1024" loading="lazy" decoding="async" alt="Illuvortex, by Mohi"><figcaption><span class="t">Illuvortex</span><a href="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/2" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Fallvoid" data-coll="Pulse" data-url="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/3" data-where="objkt"><img src="works/fallvoid.webp" srcset="works/sm/fallvoid.webp 600w, works/fallvoid.webp 757w" sizes="(max-width:720px) 46vw, 340px" width="757" height="1024" loading="lazy" decoding="async" alt="Fallvoid, by Mohi"><figcaption><span class="t">Fallvoid</span><a href="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/3" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Fractured Fibonacci" data-coll="Pulse" data-url="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/4" data-where="objkt"><img src="works/fractured-fibonacci.webp" srcset="works/sm/fractured-fibonacci.webp 600w, works/fractured-fibonacci.webp 1024w" sizes="(max-width:720px) 46vw, 340px" width="1024" height="1024" loading="lazy" decoding="async" alt="Fractured Fibonacci, by Mohi"><figcaption><span class="t">Fractured Fibonacci</span><a href="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/4" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Resiliora" data-coll="Pulse" data-url="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/5" data-where="objkt"><img src="works/resiliora.webp" srcset="works/sm/resiliora.webp 600w, works/resiliora.webp 1024w" sizes="(max-width:720px) 46vw, 340px" width="1024" height="1024" loading="lazy" decoding="async" alt="Resiliora, by Mohi"><figcaption><span class="t">Resiliora</span><a href="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/5" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Frayelle" data-coll="Pulse" data-url="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/6" data-where="objkt"><img src="works/frayelle.webp" srcset="works/sm/frayelle.webp 600w, works/frayelle.webp 1024w" sizes="(max-width:720px) 46vw, 340px" width="1024" height="1024" loading="lazy" decoding="async" alt="Frayelle, by Mohi"><figcaption><span class="t">Frayelle</span><a href="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/6" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Looped" data-coll="Pulse" data-url="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/7" data-where="objkt"><img src="works/looped.webp" srcset="works/sm/looped.webp 600w, works/looped.webp 1024w" sizes="(max-width:720px) 46vw, 340px" width="1024" height="1024" loading="lazy" decoding="async" alt="Looped, by Mohi"><figcaption><span class="t">Looped</span><a href="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/7" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Transflux" data-coll="Pulse" data-url="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/8" data-where="objkt"><img src="works/transflux.webp" srcset="works/sm/transflux.webp 600w, works/transflux.webp 1024w" sizes="(max-width:720px) 46vw, 340px" width="1024" height="1024" loading="lazy" decoding="async" alt="Transflux, by Mohi"><figcaption><span class="t">Transflux</span><a href="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/8" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="Mater" data-coll="Pulse" data-url="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/9" data-where="objkt"><img src="works/mater.webp" srcset="works/sm/mater.webp 600w, works/mater.webp 992w" sizes="(max-width:720px) 46vw, 340px" width="992" height="1024" loading="lazy" decoding="async" alt="Mater, by Mohi"><figcaption><span class="t">Mater</span><a href="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/9" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+      <figure data-title="The Infinite Point" data-coll="Pulse" data-url="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/10" data-where="objkt"><img src="works/the-infinite-point.webp" srcset="works/sm/the-infinite-point.webp 600w, works/the-infinite-point.webp 1024w" sizes="(max-width:720px) 46vw, 340px" width="1024" height="778" loading="lazy" decoding="async" alt="The Infinite Point, by Mohi"><figcaption><span class="t">The Infinite Point</span><a href="https://objkt.com/tokens/KT1Wx7DyC7BDqshfivtFVgLAmCjNGxjt1xke/10" target="_blank" rel="noopener">objkt ↗</a></figcaption></figure>
+    </div>
+  </section>
+  </main>
+
+  <footer>
+    <span class="who">
+      <span class="social">
+        <a href="https://x.com/ByMohi_" target="_blank" rel="noopener" aria-label="Mohi on X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+        <a href="https://www.instagram.com/bymohi___" target="_blank" rel="noopener" aria-label="Mohi on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg></a>
+        <a href="https://linktr.ee/bymohi" target="_blank" rel="noopener" aria-label="Mohi on Linktree"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14v8M3.5 9h17M6 3.5l6 5.5 6-5.5M6 14.5l6-5.5 6 5.5"/></svg></a>
+      </span>
+    </span>
+    <span>© 2026</span>
+  </footer>
+</div>
+
+<script>
+(()=>{
+const SAND=[201,185,148], INK='#2c2b28';
+function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const R=rng(7);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* paper grain + specks, tiled like the repeated dust in the prints */
+(function grain(){
+  const s=420,c=document.createElement('canvas');c.width=c.height=s;const g=c.getContext('2d');
+  const id=g.createImageData(s,s);
+  for(let i=0;i<id.data.length;i+=4){const v=R()*255;id.data[i]=id.data[i+1]=id.data[i+2]=v;id.data[i+3]=R()<.5?7:0}
+  g.putImageData(id,0,0);
+  g.strokeStyle='rgba(0,0,0,.18)';g.lineWidth=.6;
+  for(let i=0;i<60;i++){const y=R()*s;g.beginPath();g.moveTo(0,y);g.lineTo(s,y+R()*2-1);g.stroke()}
+  g.fillStyle='rgba(201,185,148,.35)';
+  for(let i=0;i<9;i++){const x=R()*s,y=R()*s;for(let j=0;j<4;j++){g.beginPath();g.ellipse(x+R()*8,y+R()*10,.4+R()*1.1,.6+R()*1.6,R()*3,0,7);g.fill()}}
+  document.body.style.setProperty('--grain',`url(${c.toDataURL()})`);
+})();
+
+/* the scribbled disc, drawn once */
+const disc=document.createElement('canvas');disc.width=disc.height=512;
+(function(){
+  const g=disc.getContext('2d'),c=256,r=210;
+  g.save();g.beginPath();
+  for(let a=0;a<=Math.PI*2+.01;a+=.05){const rr=r+(R()-.5)*14;g.lineTo(c+Math.cos(a)*rr,c+Math.sin(a)*rr)}
+  g.clip();
+  for(let i=0;i<1400;i++){const a=R()*Math.PI*2,o=(R()*2-1)*r,dx=Math.cos(a),dy=Math.sin(a);
+    g.strokeStyle=`rgba(${SAND},${.10+R()*.22})`;g.lineWidth=.5+R()*.9;g.beginPath();
+    g.moveTo(c-dy*o-dx*r,c+dx*o-dy*r);g.lineTo(c-dy*o+dx*r,c+dx*o+dy*r);g.stroke()}
+  for(let i=0;i<260;i++){const x=c+(R()-.5)*r*1.4,y=c+(R()-.2)*r*1.2,a=R()*Math.PI,l=20+R()*70;
+    g.strokeStyle=`rgba(30,29,26,${.25+R()*.4})`;g.lineWidth=.6+R();g.beginPath();
+    g.moveTo(x-Math.cos(a)*l,y-Math.sin(a)*l);g.lineTo(x+Math.cos(a)*l,y+Math.sin(a)*l);g.stroke()}
+  g.globalCompositeOperation='destination-out';
+  for(let i=0;i<500;i++){g.beginPath();g.arc(R()*512,R()*512,R()*1.6,0,7);g.fill()}
+  g.restore();
+  g.strokeStyle=`rgba(${SAND},.35)`;
+  for(let i=0;i<700;i++){const a=R()*Math.PI*2,rr=r+(R()-.6)*18,l=4+R()*16,t=a+Math.PI/2+(R()-.5);
+    const x=c+Math.cos(a)*rr,y=c+Math.sin(a)*rr;g.lineWidth=.5;g.beginPath();g.moveTo(x,y);g.lineTo(x+Math.cos(t)*l,y+Math.sin(t)*l);g.stroke()}
+})();
+
+/* fibres: woven into a 4:3 box, or wound into twenty small spheres */
+const K=14, PER_FACE=240, faces=[], fibres=[];
+const WORKS=[...document.querySelectorAll('#worksView figure')].map(f=>({slug:f.querySelector('img').getAttribute('src').split('/').pop().replace(/\.webp$/,''),src:f.querySelector('img').src,alt:f.querySelector('img').alt,cap:f.dataset.title+' · '+f.dataset.coll,w:+f.querySelector('img').getAttribute('width'),h:+f.querySelector('img').getAttribute('height'),url:f.dataset.url,where:f.dataset.where}));
+const ORBS=Math.max(1,WORKS.length);
+const sph=()=>{const z=R()*2-1,a=R()*Math.PI*2,r=Math.sqrt(1-z*z);return[r*Math.cos(a),r*Math.sin(a),z]};
+let rest=[],orbRest=[];
+for(let ax=0;ax<3;ax++)for(const s of[-1,1]){
+  const f=faces.length;faces.push({ax,s});
+  for(let n=0;n<PER_FACE;n++){
+    let u0,v0,u1,v1;
+    if(R()<.6){const e=()=>{const k=R()*4|0,t=R()*2-1;return k==0?[-1,t]:k==1?[1,t]:k==2?[t,-1]:[t,1]};[u0,v0]=e();[u1,v1]=e()}
+    else{u0=R()*2-1;v0=R()*2-1;u1=R()*2-1;v1=R()*2-1}
+    const bow=(R()-.5)*.08,p0=sph(),p1=sph();
+    fibres.push({face:f,start:rest.length/3,cut:-1,at:0,curl:R()<.5?-1:1,er:.75+R()*.75,fr:Array.from({length:12},R),
+      orb:fibres.length%ORBS,d:R()*.7,ph:R()*6.28,sx:R()*2-1,sy:R()*2-1});
+    for(let k=0;k<K;k++){
+      const t=k/(K-1),u=u0+(u1-u0)*t,v=v0+(v1-v0)*t,w=s*(1+Math.sin(t*Math.PI)*bow);
+      const p=[0,0,0];p[ax]=w;p[(ax+1)%3]=u;p[(ax+2)%3]=v;rest.push(...p);
+      orbRest.push(p0[0]+(p1[0]-p0[0])*t,p0[1]+(p1[1]-p0[1])*t,p0[2]+(p1[2]-p0[2])*t);
+    }
+  }
+}
+rest=new Float32Array(rest);orbRest=new Float32Array(orbRest);
+const N=rest.length/3, off=new Float32Array(N*2), vel=new Float32Array(N*2), base=new Float32Array(N*2), scr=new Float32Array(N*2);
+const HOLD=1.4, KNIT=3.4, DUR=2.8, LAG=.3;
+const sine=u=>{u=u<0?0:u>1?1:u;return .5-Math.cos(Math.PI*u)/2};
+const io=u=>{u=u<0?0:u>1?1:u;return u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2};
+const ease=u=>{u=u<0?0:u>1?1:u;return u*u*(3-2*u)};
+const wgt=new Float32Array(N);for(let i=0;i<N;i++)wgt[i]=Math.sin((i%K)/(K-1)*Math.PI);
+
+const cv=document.getElementById('cube');
+
+/* drawing: WebGL when the device has it (the GPU draws every thread in one pass), canvas 2D otherwise */
+const INKC=[44/255,43/255,40/255], SANDC=SAND.map(v=>v/255);
+function make2D(){
+  const c=cv.getContext('2d');let d=1;
+  return{resize(dd){d=dd;c.setTransform(d,0,0,d,0,0)},
+    begin(){c.clearRect(0,0,W,H);c.lineCap='butt';c.beginPath()},
+    M(x,y){c.moveTo(x,y)},L(x,y){c.lineTo(x,y)},Q(a,b,x,y){c.quadraticCurveTo(a,b,x,y)},
+    // strokes no wider than one device pixel take the browser's fast hairline path
+    stroke(al,lw){c.strokeStyle=`rgba(${SAND},${al})`;c.lineWidth=Math.min(lw,1/d);c.stroke();c.beginPath()},
+    image(img,x,y,s,rot,al){c.save();c.translate(x,y);c.rotate(rot);c.globalAlpha=al;c.drawImage(img,-s/2,-s/2,s,s);c.restore()},
+    rect(x,y,w,hh,al){c.fillStyle=`rgba(44,43,40,${al})`;c.fillRect(x,y,w,hh)},
+    end(){}};
+}
+function makeGL(){
+  const o={antialias:true,alpha:true,premultipliedAlpha:true,preserveDrawingBuffer:false};
+  let gl=null;try{gl=cv.getContext('webgl2',o)||cv.getContext('webgl',o)}catch(e){}
+  if(!gl)return null;
+  const prog=(vs,fs)=>{const p=gl.createProgram();for(const[t,s]of[[gl.VERTEX_SHADER,vs],[gl.FRAGMENT_SHADER,fs]]){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);gl.attachShader(p,sh)}gl.linkProgram(p);return gl.getProgramParameter(p,gl.LINK_STATUS)?p:null};
+  const pos='uniform vec2 r;vec4 at(vec2 p){return vec4(p.x/r.x*2.-1.,1.-p.y/r.y*2.,0.,1.);}';
+  const PL=prog(`attribute vec2 p;attribute float a;varying float v;${pos}void main(){v=a;gl_Position=at(p);}`,
+    'precision mediump float;varying float v;uniform vec3 c;void main(){gl_FragColor=vec4(c*v,v);}');
+  const PI_=prog(`attribute vec2 p;attribute vec2 u;varying vec2 t;${pos}void main(){t=u;gl_Position=at(p);}`,
+    'precision mediump float;varying vec2 t;uniform sampler2D s;uniform float a;void main(){gl_FragColor=texture2D(s,t)*a;}');
+  if(!PL||!PI_)return null;
+  const L={p:gl.getAttribLocation(PL,'p'),a:gl.getAttribLocation(PL,'a'),r:gl.getUniformLocation(PL,'r'),c:gl.getUniformLocation(PL,'c')};
+  const I={p:gl.getAttribLocation(PI_,'p'),u:gl.getAttribLocation(PI_,'u'),r:gl.getUniformLocation(PI_,'r'),s:gl.getUniformLocation(PI_,'s'),a:gl.getUniformLocation(PI_,'a')};
+  const buf=gl.createBuffer(),qbuf=gl.createBuffer(),Q4=new Float32Array(16);
+  let V=new Float32Array(1<<19),n=0,mark=0,px=0,py=0,d=1,tex=null,texSrc=null;
+  const grow=()=>{const nv=new Float32Array(V.length*2);nv.set(V);V=nv};
+  const seg=(x0,y0,x1,y1)=>{if(n+6>V.length)grow();V[n]=x0;V[n+1]=y0;V[n+3]=x1;V[n+4]=y1;n+=6};
+  const normal=()=>{gl.blendEquation(gl.FUNC_ADD);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA)};
+  const flush=()=>{
+    if(!n)return;
+    gl.useProgram(PL);gl.uniform2f(L.r,W,H);gl.uniform3fv(L.c,SANDC);
+    normal();
+    gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,V.subarray(0,n),gl.STREAM_DRAW);
+    gl.enableVertexAttribArray(L.p);gl.vertexAttribPointer(L.p,2,gl.FLOAT,false,12,0);
+    gl.enableVertexAttribArray(L.a);gl.vertexAttribPointer(L.a,1,gl.FLOAT,false,12,8);
+    gl.drawArrays(gl.LINES,0,n/3);n=mark=0;
+  };
+  gl.enable(gl.BLEND);
+  return{resize(dd){d=dd},
+    begin(){gl.viewport(0,0,cv.width,cv.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);n=mark=0},
+    M(x,y){px=x;py=y},
+    L(x,y){seg(px,py,x,y);px=x;py=y},
+    Q(cx,cy,x,y){const mx=.25*px+.5*cx+.25*x,my=.25*py+.5*cy+.25*y;seg(px,py,mx,my);seg(mx,my,x,y);px=x;py=y},
+    stroke(al,lw){const a=al*Math.min(1,lw*d)*.9;for(let i=mark+2;i<n;i+=3)V[i]=a;mark=n},
+    image(img,x,y,s,rot,al){
+      flush();
+      if(texSrc!==img){tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);
+        gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);gl.generateMipmap(gl.TEXTURE_2D);
+        gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);texSrc=img}
+      const c=Math.cos(rot)*s/2,sn=Math.sin(rot)*s/2;
+      Q4.set([x-c+sn,y-sn-c,0,0, x+c+sn,y+sn-c,1,0, x-c-sn,y-sn+c,0,1, x+c-sn,y+sn+c,1,1]);
+      gl.useProgram(PI_);gl.uniform2f(I.r,W,H);gl.uniform1f(I.a,al);gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,tex);gl.uniform1i(I.s,0);
+      normal();gl.bindBuffer(gl.ARRAY_BUFFER,qbuf);gl.bufferData(gl.ARRAY_BUFFER,Q4,gl.STREAM_DRAW);
+      gl.enableVertexAttribArray(I.p);gl.vertexAttribPointer(I.p,2,gl.FLOAT,false,16,0);
+      gl.enableVertexAttribArray(I.u);gl.vertexAttribPointer(I.u,2,gl.FLOAT,false,16,8);
+      gl.drawArrays(gl.TRIANGLE_STRIP,0,4);gl.disableVertexAttribArray(I.u);
+    },
+    rect(x,y,w,hh,al){
+      flush();
+      gl.useProgram(PL);gl.uniform2f(L.r,W,H);gl.uniform3fv(L.c,INKC);normal();
+      gl.bindBuffer(gl.ARRAY_BUFFER,qbuf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([x,y,al,x+w,y,al,x,y+hh,al,x+w,y+hh,al]),gl.STREAM_DRAW);
+      gl.enableVertexAttribArray(L.p);gl.vertexAttribPointer(L.p,2,gl.FLOAT,false,12,0);
+      gl.enableVertexAttribArray(L.a);gl.vertexAttribPointer(L.a,1,gl.FLOAT,false,12,8);
+      gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+    },
+    end:flush};
+}
+const DR=(!/[?&]canvas2d\b/.test(location.search)&&makeGL())||make2D();
+const home=document.getElementById('home'),worksView=document.getElementById('worksView');
+const hint=document.getElementById('hint'),viewer=document.getElementById('viewer');
+
+let W=0,H=0,orbR=30;
+const orbs=Array.from({length:ORBS},()=>({x:0,y:0,cx:0,cy:0,ph:R()*6.28,sp:.25+R()*.3,h:0}));
+let layoutSeed=11;
+function layoutOrbs(){
+  const r2=rng(layoutSeed),m=Math.min(W,H);orbR=Math.max(13,Math.min(26,m*.032));
+  const keep=m*.17+orbR*1.6,padX=Math.max(orbR*2.4,W*.08),padT=orbR*2.4+8,padB=orbR*2.4+40;let gap=orbR*3.8;
+  for(let i=0;i<ORBS;i++){let x,y,ok=false;
+    for(let t=0;t<400&&!ok;t++){x=padX+r2()*(W-padX*2);y=padT+r2()*(H-padT-padB);
+      ok=Math.hypot(x-W/2,y-H/2)>keep&&orbs.slice(0,i).every(o=>Math.hypot(o.x-x,o.y-y)>gap);
+      if(t==399)gap*=.85}
+    orbs[i].x=x;orbs[i].y=y;orbs[i].dl=Math.hypot(x-W/2,y-H/2)/Math.hypot(W/2,H/2)*1.1}
+}
+let dprCap=Math.min(2,devicePixelRatio||1);
+function resize(){const r=cv.getBoundingClientRect(),d=dprCap;W=r.width;H=r.height;cv.width=Math.round(W*d);cv.height=Math.round(H*d);DR.resize(d);layoutOrbs()}
+addEventListener('resize',resize);resize();
+
+let hover=0,mx=-1e4,my=-1e4,pmx=-1e4,pmy=-1e4,active=false,tiltX=0,tiltY=0,tx=0,ty=0;
+let circ={x:-1e4,y:-1e4,r:0},overCirc=0;
+const TOTAL=DUR+LAG+1.7;
+let mode=0,pathTo=0,tau=TOTAL,tauDir=1,busy=false,time=0; // starts settled as the box
+function setPtr(e){const r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;if(!active){pmx=mx;pmy=my}active=true;tx=mx/W-.5;ty=my/H-.5}
+const inCirc=(pad=0)=>Math.hypot(mx-circ.x,my-circ.y)<circ.r+pad;
+const orbAt=(pad=0)=>{let best=-1,bd=1e9;orbs.forEach((o,i)=>{const d=Math.hypot(mx-o.cx,my-o.cy);if(d<Math.max(orbR*1.6,24)+pad&&d<bd){bd=d;best=i}});return best};
+// taps are read straight from pointer down/up, so a touch acts on the first tap
+let downX=0,downY=0,downT=0,isMouse=true,shownAt=0;
+cv.addEventListener('pointermove',e=>{isMouse=e.pointerType==='mouse';setPtr(e)});
+cv.addEventListener('pointerdown',e=>{isMouse=e.pointerType==='mouse';setPtr(e);downX=e.clientX;downY=e.clientY;downT=performance.now()});
+cv.addEventListener('pointerleave',()=>{active=false;tx=ty=0});
+cv.addEventListener('pointercancel',()=>{active=false});
+cv.addEventListener('pointerup',e=>{
+  if(e.button===0&&Math.abs(e.clientX-downX)<14&&Math.abs(e.clientY-downY)<14&&performance.now()-downT<700){setPtr(e);tap(!isMouse)}
+  if(!isMouse)active=false;
+});
+
+function go(to){
+  if(to===mode)return;
+  closeAll();
+  if(tau>0&&tau<TOTAL)tauDir=-tauDir; // mid-way: the threads turn round on the path they're on
+  else{if(to===1){layoutSeed=(Math.random()*1e9)|0;layoutOrbs()}pathTo=to;tau=0;tauDir=1}
+  mode=to;
+  for(const fb of fibres)fb.cut=-1;
+  hint.textContent=to?'tap a sphere · tap the circle to weave the box':'open the threads · tap the circle';
+}
+const viewers=[viewer];
+const getViewer=()=>{let v=viewers.find(v=>v.hidden&&!weaves.some(w=>w.el===v));
+  if(!v){v=viewer.cloneNode(true);v.removeAttribute('id');v.querySelector('a').removeAttribute('id');viewer.after(v);viewers.push(v);bindViewer(v)}return v};
+function bindViewer(v){
+  v.querySelector('a').addEventListener('click',e=>e.stopPropagation());
+  v.addEventListener('click',()=>{const w=weaves.find(w=>w.el===v);if(w&&w.dir&&performance.now()-shownAt>450)weaveClose(w)});
+}
+function openOrb(i){
+  const again=weaves.find(w=>w.kind==='work'&&w.orb===i);
+  closeAll();if(again){weaveOpen(again);return}
+  const w=WORKS[i],v=getViewer();
+  const img=v.querySelector('img'),a=v.querySelector('a');
+  img.src=w.src;img.alt=w.alt;v.querySelector('figcaption .t').textContent=w.cap;a.href=w.url;a.textContent=w.where+' ↗';
+  const ar=w.w/w.h,mw=Math.min(W-32,820),mh=H-96,fw=Math.min(mw,mh*ar),fh=fw/ar;
+  const x=(W-fw)/2,y=(H-fh)/2-18;
+  // the canvas sits a little below the top of the hero; the frame and the drawn threads share its coordinates
+  Object.assign(v.style,{left:x+'px',top:(y+cv.offsetTop)+'px',width:fw+'px',height:fh+'px'});v.hidden=false;
+  weaveOpen({kind:'work',orb:i,el:v,fig:v.querySelector('figure'),x,y,w:fw,h:fh,dir:0,T:time});
+}
+const openWeave=()=>weaves.find(w=>w.dir);
+function closeAll(){for(const w of weaves)if(w.dir)weaveClose(w)}
+function closeViewer(){for(const w of weaves)if(w.dir&&w.kind==='work')weaveClose(w)}
+/* About: the circle's threads unwind and re-weave as the edges of a page */
+const panel=document.getElementById('aboutPanel'),inner=panel.querySelector('.about-inner');
+const AK=8,ADUR=1.8,ASPAN=ADUR+.5,aLines=[];
+const perim=(p)=>{p=((p%4)+4)%4;const s=p|0,f=(p-s)*2-1;return s==0?[f,-1]:s==1?[1,f]:s==2?[-f,1]:[-1,-f]};
+for(let i=0;i<520;i++){
+  const t0=R()*6.283,t1=t0+1+R()*3.2,dr=.75+R()*.25;
+  let r0,r1;
+  if(R()<.86){const p0=R()*4,p1=p0+(R()<.5?1:-1)*(.08+R()*.35),j=()=>1-R()*.02;
+    r0=perim(p0);r1=perim(p1);r0=[r0[0]*j(),r0[1]*j()];r1=[r1[0]*j(),r1[1]*j()]}
+  else{r0=[R()*2-1,R()*2-1];r1=[R()*2-1,R()*2-1]}
+  aLines.push({d0:[Math.cos(t0)*dr,Math.sin(t0)*dr],d1:[Math.cos(t1)*dr,Math.sin(t1)*dr],r0,r1,dl:R()*.5,bw:R()*2-1});
+}
+const weaves=[];
+const wG=w=>{const u=Math.min(1,Math.max(0,(time-w.T)/ASPAN));return w.dir?u:1-u};
+function weaveOpen(w){
+  const g=weaves.includes(w)?wG(w):0;
+  if(!weaves.includes(w))weaves.push(w);
+  w.dir=1;w.T=time-g*ASPAN;shownAt=performance.now();
+  requestAnimationFrame(()=>{if(w.dir)w.el.classList.add('open')});hint.style.opacity=0;
+}
+function weaveClose(w){
+  if(!w.dir)return;
+  const g=wG(w);w.dir=0;w.T=time-(1-g)*ASPAN;w.el.classList.remove('open');
+}
+function openAbout(){
+  const again=weaves.find(w=>w.kind==='about');
+  closeAll();if(again){weaveOpen(again);return}
+  const w=Math.min(W-32,620),pad=Math.min(60,w*.1);
+  inner.style.width=(w-pad*2)+'px';panel.hidden=false;
+  const hh=Math.min(H-24,inner.offsetHeight+pad*2),x=(W-w)/2,y=(H-hh)/2;
+  Object.assign(panel.style,{left:x+'px',top:(y+cv.offsetTop)+'px',width:w+'px',height:hh+'px'});
+  weaveOpen({kind:'about',orb:-1,el:panel,fig:inner,x,y,w,h:hh,dir:0,T:time});
+}
+function closeAbout(){for(const w of weaves)if(w.dir&&w.kind==='about')weaveClose(w)}
+// a circle's threads unwind and re-weave as the edges of a page (About) or a frame (a work)
+function drawWeave(w){
+  const ga=wG(w);if(ga<=0)return;
+  const src=w.kind==='about'?{x:circ.x,y:circ.y,r:circ.r*.82}:{x:orbs[w.orb].cx,y:orbs[w.orb].cy,r:orbs[w.orb].sc};
+  const cx=w.x+w.w/2,cy=w.y+w.h/2,hw=w.w/2,hh=w.h/2;
+  // the page darkens what's behind it as the threads arrive
+  DR.rect(w.x,w.y,w.w,w.h,.82*sine(ga*1.3-.2));
+  for(const L of aLines){
+    const e=w.dir?sine((time-w.T-L.dl)/ADUR):1-sine((time-w.T-(.5-L.dl))/ADUR);
+    for(let k=0;k<AK;k++){const t=k/(AK-1),ek=sine(e*1.25-t*.25),b=Math.sin(Math.PI*ek);
+      const dx=src.x+(L.d0[0]+(L.d1[0]-L.d0[0])*t)*src.r, dy=src.y+(L.d0[1]+(L.d1[1]-L.d0[1])*t)*src.r;
+      const rx=cx+(L.r0[0]+(L.r1[0]-L.r0[0])*t)*hw, ry=cy+(L.r0[1]+(L.r1[1]-L.r0[1])*t)*hh;
+      const x=dx+(rx-dx)*ek+L.bw*b*Math.sin(Math.PI*t)*36, y=dy+(ry-dy)*ek-b*Math.sin(Math.PI*t)*22;
+      k?DR.L(x,y):DR.M(x,y)}
+  }
+  DR.stroke(.34*Math.min(1,ga*5)*(w.kind==='work'?1-sine((ga-.55)/.4):1),.55);
+}
+document.getElementById('aboutLink').addEventListener('click',e=>{
+  e.preventDefault();
+  if(!worksView.hidden){showHome();setTimeout(openAbout,400)}else openWeave()&&openWeave().kind==='about'?closeAbout():openAbout();
+});
+panel.addEventListener('click',()=>{if(performance.now()-shownAt>450)closeAbout()});
+bindViewer(viewer);
+addEventListener('keydown',e=>{if(e.key==='Escape')closeAbout()});
+document.addEventListener('pointerup',e=>{const ow=openWeave();if(ow&&ow.kind==='about'&&!cv.contains(e.target)&&!panel.contains(e.target)&&!e.target.closest('#aboutLink')&&performance.now()-shownAt>450)closeAbout()});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeViewer()});
+function tap(touch){
+  if(openWeave()){closeAll();return}
+  if(inCirc(touch?16:0))go(mode?0:1);else if(mode===1){const o=orbAt(touch?10:0);if(o>=0)openOrb(o)}
+}
+cv.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go(mode?0:1)}});
+
+/* addresses: / · /works/ · /about/ · /work/<name>/ — the address follows what's on screen, and opening one shows it */
+function showWorks(){home.hidden=true;worksView.hidden=false;scrollTo(0,0);syncURL()}
+function showHome(){if(home.hidden){home.hidden=false;worksView.hidden=true;scrollTo(0,0);resize()}syncURL()}
+function wantedPath(){
+  if(!worksView.hidden)return '/works/';
+  const w=openWeave();if(!w)return '/';
+  return w.kind==='about'?'/about/':'/work/'+WORKS[w.orb].slug+'/';
+}
+let pending=false; // an address is opening its page on the next frames
+function syncURL(){
+  if(pending)return;
+  const p=wantedPath(),cur=location.pathname;if(p===cur&&!location.hash)return;
+  // stepping into a page adds to the history; leaving it or moving between pages replaces
+  if(cur==='/'&&p!=='/')history.pushState(null,'',p);else history.replaceState(null,'',p);
+}
+function applyPath(){
+  let p=location.pathname;const hsh=location.hash.slice(1);
+  if(p==='/'&&hsh)p=hsh==='works'?'/works/':hsh==='about'?'/about/':'/';
+  if(p==='/works/'||p==='/works'){closeAll();showWorks();return}
+  showHome();
+  const m=p.match(/^\/work\/([^/]+)\/?$/),i=m?WORKS.findIndex(w=>w.slug===m[1]):-1;
+  if(i>=0){
+    if(mode!==1){layoutSeed=(Math.random()*1e9)|0;layoutOrbs();mode=1;pathTo=1;tau=TOTAL;tauDir=1;
+      hint.textContent='tap a sphere · tap the circle to weave the box'}
+    pending=true;requestAnimationFrame(()=>requestAnimationFrame(()=>{pending=false;openOrb(i)}));return;
+  }
+  if(p==='/about/'||p==='/about'){pending=true;requestAnimationFrame(()=>requestAnimationFrame(()=>{pending=false;openAbout()}));return}
+  closeAll();syncURL();
+}
+const navTo=(el,fn)=>el.addEventListener('click',e=>{if(e.metaKey||e.ctrlKey||e.shiftKey)return;e.preventDefault();fn()});
+navTo(document.getElementById('worksLink'),()=>{closeAll();showWorks()});
+navTo(document.getElementById('homeLink'),()=>{closeAll();showHome()});
+navTo(document.getElementById('backLink'),()=>{closeAll();showHome()});
+addEventListener('popstate',applyPath);applyPath();
+
+function hits(ax,ay,bx,by,r){
+  const dx=bx-ax,dy=by-ay,l=dx*dx+dy*dy||1;let t=((mx-ax)*dx+(my-ay)*dy)/l;t=t<0?0:t>1?1:t;
+  const ex0=ax+dx*t-mx,ey0=ay+dy*t-my;if(ex0*ex0+ey0*ey0<r*r)return true;
+  const ex=mx-pmx,ey=my-pmy,den=dx*ey-dy*ex;if(!den)return false;
+  const u=((pmx-ax)*ey-(pmy-ay)*ex)/den,v=((pmx-ax)*dy-(pmy-ay)*dx)/den;
+  return u>=0&&u<=1&&v>=0&&v<=1;
+}
+
+let last=performance.now(),visible=true,nfr=-90,slow=0;
+new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(cv);
+function frame(now){
+  requestAnimationFrame(frame);
+  const dt=Math.min(.05,(now-last)/1000);last=now;
+  if(home.hidden||!visible)return;
+  // a device that can't keep up renders a few fewer pixels
+  if(dprCap>1.25&&++nfr>0){slow+=dt;if(nfr===45){if(slow/45>1/42){dprCap=Math.max(1.25,dprCap-.25);resize()}nfr=0;slow=0}}
+  time+=dt*(reduce?.4:1);
+  tau=Math.min(TOTAL,Math.max(0,tau+dt*(reduce?.4:1)*tauDir));busy=tau>0&&tau<TOTAL;
+  const calm=mode===0&&!busy;
+  hover+=((active&&calm?1:0)-hover)*.08;tiltX+=(ty-tiltX)*.04;tiltY+=(tx-tiltY)*.04;
+  const tall=W<720||H>W, E=tall?[.9,1.2,.9]:[1.2,.9,.9], e0=E[0],e1=E[1],e2=E[2];
+  const rax=.34+Math.sin(time*.19)*.07+tiltX*.45, ray=.42+Math.sin(time*.13)*.5+tiltY*.7;
+  const cx=Math.cos(rax),sx=Math.sin(rax),cy=Math.cos(ray),sy=Math.sin(ray);
+  const S=Math.min(W/(e0*2*1.75),H/(e1*2*1.95)), D=5.2, SD=S*D, ox=W/2, oy=H/2;
+  const proj=(x,y,z,o)=>{x*=e0;y*=e1;z*=e2;const x1=x*cy+z*sy,z1=-x*sy+z*cy,y1=y*cx-z1*sx,z2=y*sx+z1*cx,f=D/(D-z2);o[0]=ox+x1*S*f;o[1]=oy+y1*S*f;o[2]=f};
+  const tmp=[0,0,0];
+
+  // orbs drift; the hovered one swells a little
+  const ho=mode===1&&active&&isMouse?orbAt():-1;
+  for(let i=0;i<ORBS;i++){const o=orbs[i];
+    o.cx=o.x+Math.sin(time*o.sp+o.ph)*orbR*.5;o.cy=o.y+Math.cos(time*o.sp*.8+o.ph)*orbR*.4;
+    o.h+=((i===ho?1:0)-o.h)*.12;
+    o.ca=Math.cos(time*.12+o.ph);o.sa=Math.sin(time*.12+o.ph);o.sc=orbR*(1+o.h*.18)}
+
+  // the threads loosen, float up and over like silk in still water, and settle into their spheres
+  const tr=tau, flying=busy, lagStep=LAG/(K-1);
+  for(const fb of fibres){
+    const o=orbs[fb.orb], dl=(o.dl||0)+fb.d*.55, ca=o.ca, sa=o.sa, osc=o.sc, ocx=o.cx, ocy=o.cy;
+    const lift=-S*.22*(.6+fb.d*.6), bow=S*.1*fb.sx;
+    let i3=fb.start*3, i2=fb.start*2;
+    for(let k=0;k<K;k++,i3+=3,i2+=2){
+      let bx,by;
+      if(!flying&&mode){bx=ocx+(orbRest[i3]*ca+orbRest[i3+2]*sa)*osc;by=ocy+orbRest[i3+1]*osc}
+      else{
+        const x=rest[i3]*e0,y=rest[i3+1]*e1,z=rest[i3+2]*e2;
+        const x1=x*cy+z*sy,z1=z*cy-x*sy,f=SD/(D-(y*sx+z1*cx));
+        const qx=ox+x1*f,qy=oy+(y*cx-z1*sx)*f;
+        if(!flying){bx=qx;by=qy}
+        else{
+          const e=sine((tr-dl-(pathTo?k:K-1-k)*lagStep)/DUR), w=pathTo?e:1-e;
+          let ax,ay,tx2,ty2;
+          if(pathTo){ax=qx;ay=qy;tx2=ocx;ty2=ocy}else{ax=ocx;ay=ocy;tx2=qx;ty2=qy}
+          const dx=tx2-ax,dy=ty2-ay,l=Math.sqrt(dx*dx+dy*dy)||1,nx=-dy/l,ny=dx/l;
+          const c1x=ax+dx*.3+nx*bow, c1y=ay+dy*.3+ny*bow+lift;
+          const c2x=ax+dx*.7+nx*bow*.6, c2y=ay+dy*.7+ny*bow*.6+lift*.6;
+          const u=1-e,b0=u*u*u,b1=3*u*u*e,b2=3*u*e*e,b3=e*e*e;
+          // a loose cloud that slowly draws tight into the sphere
+          const sc=osc*(1+(1-w)*1.6)*w;
+          bx=b0*ax+b1*c1x+b2*c2x+b3*tx2+(orbRest[i3]*ca+orbRest[i3+2]*sa)*sc;
+          by=b0*ay+b1*c1y+b2*c2y+b3*ty2+orbRest[i3+1]*sc;
+          if(k===0)fb.m=w;
+        }
+      }
+      base[i2]=bx;base[i2+1]=by}
+    if(!flying)fb.m=mode;
+  }
+
+  // in the box, a round hole opens under the pointer; threads crossing it snap
+  const Rad=S*.8, R2=Rad*Rad, holeR=S*.46, push=S*.16*hover;
+  if(active&&calm){
+    const x0=Math.min(mx,pmx)-holeR,x1=Math.max(mx,pmx)+holeR,y0=Math.min(my,pmy)-holeR,y1=Math.max(my,pmy)+holeR;
+    for(const fb of fibres){const s=fb.start*2;
+      if(fb.cut>=0){const a=s+fb.cut*2,qx=(base[a]+base[a+2])/2-mx,qy=(base[a+1]+base[a+3])/2-my;if(qx*qx+qy*qy<R2)fb.at=time;continue}
+      for(let k=0,a=s;k<K-1;k++,a+=2){
+        const ax=scr[a],ay=scr[a+1],bx=scr[a+2],by=scr[a+3];
+        if((ax<x0&&bx<x0)||(ax>x1&&bx>x1)||(ay<y0&&by<y0)||(ay>y1&&by>y1))continue;
+        if(hits(ax,ay,bx,by,holeR)){fb.cut=k;fb.at=time;fb.idle=false;break}}}
+  }
+  pmx=mx;pmy=my;
+
+  // springs; threads that have come to rest skip the maths until something touches them
+  const hv=hover>.01;
+  for(const fb of fibres){
+    const s=fb.start*2,c=fb.cut,end=s+K*2;
+    if(c<0&&!hv&&fb.idle){for(let j=s;j<end;j++)scr[j]=base[j];continue}
+    let ret=0,mv=0;
+    if(c>=0){const age=time-fb.at;ret=1-ease((age-HOLD)/KNIT);if(age>HOLD+KNIT+.2)fb.cut=-1}
+    for(let k=0;k<K;k++){
+      const j=s+k*2,bx=base[j],by=base[j+1];
+      let gx=0,gy=0,st=.07,dm=.84,w=wgt[fb.start+k],q=0;
+      if(fb.cut>=0){
+        const sideA=k<=c, anc=sideA?s:s+(K-1)*2;
+        q=sideA?k/Math.max(1,c):(K-1-k)/Math.max(1,K-2-c);
+        const f=ret*.12*Math.pow(q,1.6);
+        gx=(base[anc]-bx)*f+fb.curl*ret*S*.07*q*q;
+        gy=(base[anc+1]-by)*f+ret*S*.025*q*q;
+        w=Math.max(w,q);st=.05;dm=.88;
+      }
+      if(hv){const dx=bx-mx,dy=by-my;
+        if(dx<Rad&&dx>-Rad&&dy<Rad&&dy>-Rad){const d2=dx*dx+dy*dy;
+          if(d2<R2){const d=Math.sqrt(d2)+.001;let t=1-d/Rad;t=t*t*(3-2*t);let p=t*push*w;
+            if(fb.cut>=0&&q>.3)p=Math.max(p,(holeR*fb.er-d)*hover*ret*q);
+            gx+=dx/d*p;gy+=dy/d*p}}}
+      const vx=(vel[j]+(gx-off[j])*st)*dm,vy=(vel[j+1]+(gy-off[j+1])*st)*dm;
+      vel[j]=vx;vel[j+1]=vy;off[j]+=vx;off[j+1]+=vy;
+      const m=Math.abs(off[j])+Math.abs(off[j+1])+Math.abs(vx)+Math.abs(vy);if(m>mv)mv=m;
+      scr[j]=bx+off[j];scr[j+1]=by+off[j+1];
+    }
+    if(fb.cut<0&&!hv&&mv<.02){fb.idle=true;off.fill(0,s,end);vel.fill(0,s,end)}else fb.idle=false;
+  }
+  const front=faces.map(f=>{const n=[0,0,0];n[f.ax]=f.s;const z1=-n[0]*sy+n[2]*cy;return n[1]*sx+z1*cx>0});
+
+  DR.begin();
+  for(let i=weaves.length-1;i>=0;i--){const w=weaves[i];if(!w.dir&&wG(w)<=0){w.el.hidden=true;w.fig.style.opacity=0;weaves.splice(i,1);continue}
+    // the work (or the text) shows only once its threads have arrived, on the same clock
+    const op=sine((wG(w)-.5)/.48);w.fig.style.opacity=op;
+    if(w.kind==='about')w.fig.style.transform=`translate(-50%,calc(-50% + ${8*(1-op)}px))`}
+  if(!weaves.length)hint.style.opacity='';
+  let gw=0,gab=0;for(const w of weaves){const g=wG(w);gw=Math.max(gw,g);if(w.kind==='about')gab=g}
+  const dimK=1-.65*sine(gw), hid=new Map();for(const w of weaves)if(w.kind==='work')hid.set(w.orb,Math.max(hid.get(w.orb)||0,wG(w)));
+  const run=(a,b)=>{
+    DR.M(scr[a],scr[a+1]);
+    for(let j=a+2;j<b;j+=2)DR.Q(scr[j],scr[j+1],(scr[j]+scr[j+2])/2,(scr[j+1]+scr[j+3])/2);
+    if(b>a)DR.L(scr[b],scr[b+1]);
+  };
+  const fray=(i,pv,fb,o,amt)=>{
+    const dir=Math.atan2(scr[i+1]-scr[pv+1],scr[i]-scr[pv]);
+    for(let m=0;m<3;m++){const an=dir+(fb.fr[o+m]-.5)*1.6,l=(3+fb.fr[o+m+3]*11)*amt;
+      DR.M(scr[i],scr[i+1]);DR.L(scr[i]+Math.cos(an)*l,scr[i+1]+Math.sin(an)*l)}
+  };
+  const draw=fb=>{
+    const s=fb.start*2,e=s+(K-1)*2,c=fb.cut;
+    if(c<0){run(s,e);return}
+    const a=s+c*2,b=a+2,age=time-fb.at,h=ease((age-HOLD)/KNIT)*.5,ret=1-h*2;
+    run(s,a);if(h>0)DR.L(scr[a]+(scr[b]-scr[a])*h,scr[a+1]+(scr[b+1]-scr[a+1])*h);
+    DR.M(scr[e],scr[e+1]);
+    for(let j=e-2;j>b;j-=2)DR.Q(scr[j],scr[j+1],(scr[j]+scr[j-2])/2,(scr[j+1]+scr[j-1])/2);
+    DR.L(scr[b],scr[b+1]);
+    {const amt=Math.min(1,age*4)*ret;fray(a,a>s?a-2:a+2,fb,0,amt);fray(b,b<e?b+2:b-2,fb,6,amt);DR.M(scr[b],scr[b+1])}
+    if(h>0)DR.L(scr[b]+(scr[a]-scr[b])*h,scr[b+1]+(scr[a+1]-scr[b+1])*h);
+  };
+  const batch=(test,alpha,lw)=>{for(const fb of fibres)if(test(fb))draw(fb);DR.stroke(alpha*dimK,lw)};
+  const inOrb=fb=>fb.m>=.97, still=fb=>!hid.has(fb.orb), mid=fb=>fb.m>.03&&fb.m<.97;
+  batch(fb=>fb.m<=.03&&!front[fb.face],.15,.5);
+  batch(mid,.26,.5);
+
+  // the circle: drifts inside the box, floats at the centre among the spheres
+  const G=sine(tau/3.6), md=pathTo?G:1-G;
+  proj(Math.sin(time*.23)*(1-.36/E[0]),Math.sin(time*.31+1)*(1-.36/E[1]),Math.sin(time*.17+2)*(1-.36/E[2]),tmp);
+  const px=tmp[0]+(W/2-tmp[0])*md, py=tmp[1]+(H/2+Math.sin(time*.6)*6-tmp[1])*md;
+  const hov=active&&isMouse&&inCirc();overCirc+=((hov?1:0)-overCirc)*.12;
+  if(isMouse){const cur=hov||ho>=0?'pointer':mode?'default':'crosshair';if(cv.style.cursor!==cur)cv.style.cursor=cur}
+  const size=(S*.72*tmp[2]*(1-md)+Math.min(W,H)*.2*md)*(1+Math.sin(time*.5)*.03+overCirc*.08);
+  circ={x:px,y:py,r:size/2};
+  DR.image(disc,px,py,size,time*.08,(.88+overCirc*.12)*(1-sine(gab*3)));
+
+  batch(fb=>inOrb(fb)?still(fb):fb.m<=.03&&front[fb.face],.4,.6);
+  for(const[o,g]of hid)batch(fb=>fb.orb===o&&inOrb(fb),.4*(1-sine(g*3)),.6);
+  for(const w of weaves)drawWeave(w);
+  if(wantedPath()!==location.pathname)syncURL();
+  DR.end();
+}
+requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
